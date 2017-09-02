@@ -6,8 +6,8 @@ If you just laughed at php know this: if you think that language matters, then y
 <h2>WHAT IS THAT, MOTHERFUCKER?!</h2>
 
 [SRP is a programming principle introduced by Robert C. Martin's][1], that states that <b>"a class should have only one reason to change"</b>.
-A reason to change is when we have to modify the way the class a handles a responsibility. So one reason to change per one responsibility.
-And "there should only be ONE reason to change", therefore "one responsibility".
+A reason to change is when we have to modify the way the class handles a responsibility. So one reason to change per one responsibility.
+And "there should only be ONE reason to change", therefore there should be only one - <b>A SINGLE</b> - responsibility.
 
 The simplest way to understand SRP is to read about [coupling][2].
 Code coupling is interdependence between modules (packages/bundles/etc.) and violating SRP basically means coupling inside of a class.
@@ -51,8 +51,7 @@ class DB
 
 *Class "DB" could further be separated into "Connection" and "Repository", but you should choose how to separate you classes yourself.*
 
-And maybe, JUST MAYBE, you'll say - "HEY! That shit looks familiar!". Remember that Active Record pattern? 
-[Ye, it violates the SRP principle][3].
+Does BadUserEntity class seem familiar? That's because it's Active Record pattern.[And yes, it violates the SRP principle][3].
 Remember all those protected/private (God, I hope you at least know about encapsulation) methods you cramped into one class? 
 Well, my friend, you've created a lot of problems for someone. Maybe even for yourself.
 
