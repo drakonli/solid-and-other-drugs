@@ -51,7 +51,7 @@ class DB
 
 *Class "DB" could further be separated into "Connection" and "Repository", but you should choose how to separate you classes yourself.*
 
-Does BadUserEntity class seem familiar? That's because it's Active Record pattern.[And yes, it violates the SRP principle][3].
+Does BadUserEntity class seem familiar? That's because it's Active Record pattern. [And yes, it violates the SRP principle][3]. 
 Remember all those protected/private (God, I hope you at least know about encapsulation) methods you cramped into one class? 
 Well, my friend, you've created a lot of problems for someone. Maybe even for yourself.
 
