@@ -76,7 +76,7 @@ and maintainability, otherwise we would all write in a single file of code all t
 Every time you write a new class (or modify an old one, if you're crazy like me) you should ask yourself
 "How many reasons does this class have to change? How many responsibilities does it have?" if the answer is more then one, then <b>SEPARATE THE CODE INTO ANOTHER CLASS, MOTHERFUCKER!</b>
 
-P.S. the style is inspired by [motherfucking programmers!]
+P.S. the style is inspired by [motherfucking programmers!][5]
 
 [1]: https://en.wikipedia.org/wiki/Single_responsibility_principle
 [2]: https://en.wikipedia.org/wiki/Coupling_(computer_programming)
