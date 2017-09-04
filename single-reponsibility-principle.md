@@ -69,7 +69,7 @@ means that when the time comes to change one responsibility another developer wo
 1.  When sending a request to user table you will always have to access BadUserEntity object. For example, when trying to find out
 if the entity exists in database the code would have to know about the entity and all it's fields and functions, 
 which means more test cases and more situations where changes to fields of entity would break the code that 
-uses "sendRequest" part of the entity. Basically, this means a violation of [Law of demeter][4] which I will review in another article.
+uses "findById" part of the entity. Basically, this means a violation of [Law of demeter][4] which I will review in another article.
 1. Your class becomes a lot bigger and a lot harder to read and maintain. The point of good code is always readability 
 and maintainability, otherwise we would all write in a single file of code all the time.
 
