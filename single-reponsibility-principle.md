@@ -1,9 +1,9 @@
 > Everything written here is my interpretation of Robert C. Martin's work and tons and tons of googling and practicing as a php developer.
 If you just laughed at php know this: if you think that language matters, then you are probably the one making it worse.
 
-<h1> Single Responsibility Principle, MOTHERFUCKER! </h1>
+<h1>Single Responsibility Principle(SRP)</h1>
 
-<h2>WHAT IS THAT, MOTHERFUCKER?!</h2>
+<h2>What is SRP?</h2>
 
 [SRP is a programming principle introduced by Robert C. Martin's][1], that states that <b>"a class should have only one reason to change"</b>.
 A reason to change is when we have to modify the way the class handles a responsibility. So one reason to change per one responsibility.
@@ -12,7 +12,7 @@ And "there should only be ONE reason to change", therefore there should be only 
 The simplest way to understand SRP is to read about [coupling][2].
 Code coupling is interdependence between modules (packages/bundles/etc.) and violating SRP basically means coupling inside of a class.
 
-<h2>EXAMPLE, MOTHERFUCKER!</h2>
+<h2>Can I have some examples?</h2>
 
 Simplest example is code that handles database operations.
 
@@ -26,8 +26,8 @@ class BadUserEntity
     public function getUsername();
     
     public function connect();
-
-    public function sendRequest();
+    
+    public function findById($id);
 }
 ```
 
@@ -41,22 +41,24 @@ class GoodUserEntity
     public function getUsername();
 }
 
-class DB
+class Connection
 {
     public function connect();
+}
 
-    public function sendRequest();
+class Repository
+{
+    public function findById();
 }
 ```
-
-*Class "DB" could further be separated into "Connection" and "Repository", but you should choose how to separate you classes yourself.*
 
 Does BadUserEntity class seem familiar? That's because it's Active Record pattern. [And yes, it violates the SRP principle][3]. 
 Remember all those protected/private (God, I hope you at least know about encapsulation) methods you cramped into one class? 
 Well, my friend, you've created a lot of problems for someone. Maybe even for yourself.
 
+<h2>Why should I adhere to this principle?</h2> 
 
-<h2>WHAT'S THE BIG PROBLEM, MOTHERFUCKER?!</h2> 
+Because by violating this principle you create a number of problems:
 
 1. When adding new fields to BadUserEntity (like password) you will have to make sure you didnt break other responsibilities 
 (sending request, making a connection).
@@ -71,15 +73,12 @@ uses "sendRequest" part of the entity. Basically, this means a violation of [Law
 1. Your class becomes a lot bigger and a lot harder to read and maintain. The point of good code is always readability 
 and maintainability, otherwise we would all write in a single file of code all the time.
 
-<h2>WHAT SHOULD I DO, MOTHERFUCKER?!</h2>
+<h2>How do I adhere to this principle?</h2>
 
 Every time you write a new class (or modify an old one, if you're crazy like me) you should ask yourself
-"How many reasons does this class have to change? How many responsibilities does it have?" if the answer is more then one, then <b>SEPARATE THE CODE INTO ANOTHER CLASS, MOTHERFUCKER!</b>
-
-*P.S. the style is inspired by [motherfucking programmers!][5]*
+"How many reasons does this class have to change? How many responsibilities does it have?" if the answer is more then one, then <b>SEPARATE THE CODE INTO ANOTHER CLASS!</b>
 
 [1]: https://en.wikipedia.org/wiki/Single_responsibility_principle
 [2]: https://en.wikipedia.org/wiki/Coupling_(computer_programming)
 [3]: https://en.wikipedia.org/wiki/Active_record_pattern#Single_responsibility_principle_and_separation_of_concerns
 [4]: https://en.wikipedia.org/wiki/Law_of_Demeter
-[5]: http://programming-motherfucker.com/
