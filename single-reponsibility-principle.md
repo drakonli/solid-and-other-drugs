@@ -60,14 +60,9 @@ Well, my friend, you've created a lot of problems for someone. Maybe even for yo
 
 Because by violating this principle you create a number of problems:
 
-1. When adding new fields to BadUserEntity (like password) you will have to make sure you didnt break other responsibilities 
-(sending request, making a connection).
-1. When modifying BadUserEntity in any way you have to modify tests, that you wouldn't have to otherwise 
-(if Connection was a separate object).  
-1. When a class consists of different methods most developers assume that you can depend one method on another and that
-means that when the time comes to change one responsibility another developer would be forced to change the dependent responsibility.
-1.  When sending a request to user table you will always have to access BadUserEntity object. For example, when trying to find out
-if the entity exists in database the code would have to know about the entity and all it's fields and functions, 
+1. When one responsibility breaks - the others break too. In our case if getUsername method breaks, we wouldn't be able to even connect to database. If you adhere to this principle - different entities would use the same "Connection", which would continue working even if some entity does not work properly.
+1. The more dependencies in one class the more coupled code becomes. For example, we could use "connect" right before using "findById" inside of "BadUserEntity". If we decided to change how the "connect" works we could stumble in a situation where we could no longer use it inside of "findById", so instead of just changing "connect" we would have to change "findById" too.
+1.  When sending a request to user table you will always have to access BadUserEntity object. For example, when trying to find out if the entity exists in database the code would have to know about the entity and all it's fields and functions, 
 which means more test cases and more situations where changes to fields of entity would break the code that 
 uses "findById" part of the entity. Basically, this means a violation of [Law of demeter][4] which I will review in another article.
 1. Your class becomes a lot bigger and a lot harder to read and maintain. The point of good code is always readability 
